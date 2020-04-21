@@ -15,12 +15,13 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class Shell : Page
     {
-        public MainPage()
+        public Shell()
         {
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
@@ -35,6 +36,20 @@ namespace XamlBrewer.UWP.IEXCloud.Sample
             }
 
             this.InitializeComponent();
+        }
+
+        private void NavigationView_ItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.IsSettingsInvoked)
+            {
+                // TODO: open dialog
+                return;
+            }
+
+            var item = args.InvokedItemContainer as WinUI.NavigationViewItem;
+
+            ContentFrame.Navigate(Type.GetType(item.Tag.ToString()));
+            NavigationView.Header = item.Content;
         }
     }
 }
