@@ -19,7 +19,7 @@
         
         <!-- Background -->
         <Image Stretch="UniformToFill"
-               Opacity=".075"
+               Opacity=".15"
                Source="/Assets/Background.jpg"
                Grid.RowSpan="10"
                Grid.ColumnSpan="10"
@@ -28,11 +28,9 @@
 
         <winui:NavigationView x:Name="NavigationView"
                               Header="My stocks"
-                              IsBackButtonVisible="Collapsed" 
+                              IsBackButtonVisible="Collapsed"
                               Background="Transparent"
-                              AllowFocusOnInteraction="False"
                               ItemInvoked="NavigationView_ItemInvoked">
-
             <winui:NavigationView.MenuItems>
                 <winui:NavigationViewItem Icon="Play"
                                           Content="Menu Item1"
@@ -43,12 +41,12 @@
                 <winui:NavigationViewItem Icon="Refresh"
                                           Content="Menu Item3"
                                           Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.Page3" />
-                <winui:NavigationViewItem Icon="Download"
-                                          Content="Menu Item4"
-                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.Page4" />
+                <winui:NavigationViewItem Icon="PreviewLink"
+                                          Content="News"
+                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.NewsPage" />
             </winui:NavigationView.MenuItems>
-            <Frame x:Name="ContentFrame" 
-                   Padding="6 0"/>
+            <Frame x:Name="ContentFrame"
+                   Padding="16 0" />
         </winui:NavigationView>
 
         <!-- XAML Brewer Logo -->
@@ -96,7 +94,7 @@
             </Canvas>
         </Viewbox>
 
-        <!-- Title Bar -->
+         <!-- Title Bar --> 
         <Grid x:Name="AppTitleBar"
               Background="Transparent"
               Height="32"

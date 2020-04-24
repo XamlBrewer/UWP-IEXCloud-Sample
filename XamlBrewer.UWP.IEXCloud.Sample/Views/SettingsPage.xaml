@@ -1,0 +1,73 @@
+﻿<Page x:Class="XamlBrewer.UWP.IEXCloud.Sample.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:XamlBrewer.UWP.IEXCloud.Sample.Views"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="Transparent">
+
+    <Grid Background="Transparent">
+        <Grid.Resources>
+            <ThemeShadow x:Name="SharedShadow" />
+        </Grid.Resources>
+        <Grid x:Name="ShadowCatcher"
+              Margin="-8" />
+        <StackPanel Background="Transparent">
+            <StackPanel x:Name="ContentGrid"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        MinWidth="400"
+                        Background="GhostWhite"
+                        Shadow="{StaticResource SharedShadow}"
+                        Padding="20"
+                        Margin="0 0 0 20">
+                <TextBlock Text="Your IEX Cloud Account"
+                           FontWeight="SemiBold"
+                           Margin="0 0 0 20" />
+                <TextBox Header="Publishable key"
+                         Text="{x:Bind Settings.PublishableKey, Mode=TwoWay}"
+                         Margin="0 0 0 20" />
+                <PasswordBox Header="Secret key"
+                             Password="{x:Bind Settings.SecretKey, Mode=TwoWay}"
+                             Margin="0 0 0 20" />
+                <Grid>
+                    <TextBlock x:Name="TestTokensTest"
+                               VerticalAlignment="Center" />
+                    <Button Content="Test your tokens"
+                            Click="TestTokensButton_Click"
+                            HorizontalAlignment="Right" />
+                </Grid>
+            </StackPanel>
+            <StackPanel x:Name="ContentGrid2"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        MinWidth="400"
+                        Background="GhostWhite"
+                        Shadow="{StaticResource SharedShadow}"
+                        Padding="20">
+                <TextBlock Text="Your IEX Cloud SandBox Account"
+                           FontWeight="SemiBold"
+                           Margin="0 0 0 20" />
+                <TextBox Header="Publishable key"
+                         Text="{x:Bind Settings.PublishableSandBoxKey, Mode=TwoWay}"
+                         Margin="0 0 0 20" />
+                <PasswordBox Header="Secret key"
+                             Password="{x:Bind Settings.SecretSandBoxKey, Mode=TwoWay}"
+                             Margin="0 0 0 20" />
+                <Grid Margin="0 0 0 20">
+                    <TextBlock x:Name="TestTokensTest2"
+                               VerticalAlignment="Center" />
+                    <Button Content="Test your tokens"
+                            Click="TestSandBoxTokensButton_Click"
+                            HorizontalAlignment="Right" />
+                </Grid>
+
+                <ToggleSwitch Header="Use Sandbox only"
+                              IsOn="{x:Bind Settings.UseSandBox, Mode=TwoWay}" />
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

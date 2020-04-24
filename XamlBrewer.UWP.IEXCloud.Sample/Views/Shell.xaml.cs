@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using XamlBrewer.UWP.IEXCloud.Sample.Views;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample
@@ -42,7 +43,8 @@ namespace XamlBrewer.UWP.IEXCloud.Sample
         {
             if (args.IsSettingsInvoked)
             {
-                // TODO: open dialog
+                ContentFrame.Navigate(typeof(SettingsPage));
+                NavigationView.Header = "Settings";
                 return;
             }
 
