@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\FormattingService.cs" />
     <Compile Include="Services\IEXCloudService.cs" />
     <Compile Include="Services\Settings\ObservableSettings.cs" />
     <Compile Include="Services\Settings\Settings.cs" />
@@ -134,8 +135,8 @@
     <Compile Include="Views\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
+    <Compile Include="Views\WatchListPage.xaml.cs">
+      <DependentUpon>WatchListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
@@ -179,7 +180,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Page1.xaml">
+    <Page Include="Views\WatchListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

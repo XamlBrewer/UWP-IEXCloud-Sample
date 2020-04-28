@@ -15,6 +15,8 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
 
         private async void NewsPage_Loaded(object sender, RoutedEventArgs e)
         {
+            ProgressRing.IsActive = true;
+
             using (var iexCloudClient = IEXCloudService.GetClient())
             {
                 var response = await iexCloudClient.Stock.NewsAsync("MSFT");
@@ -27,6 +29,8 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                     NewsItems.ItemsSource = response.Data;
                 }
             }
+
+            ProgressRing.IsActive = false;
         }
     }
 }

@@ -6,7 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="Transparent">
         <Grid.Resources>
@@ -16,7 +16,7 @@
                           TintOpacity="0.15"
                           FallbackColor="{StaticResource SystemChromeMediumColor}" />
         </Grid.Resources>
-        
+
         <!-- Background -->
         <Image Stretch="UniformToFill"
                Opacity=".15"
@@ -32,15 +32,24 @@
                               Background="Transparent"
                               ItemInvoked="NavigationView_ItemInvoked">
             <winui:NavigationView.MenuItems>
-                <winui:NavigationViewItem Icon="Play"
-                                          Content="Menu Item1"
-                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.Page1" />
-                <winui:NavigationViewItem Icon="Save"
-                                          Content="Menu Item2"
-                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.Page2" />
-                <winui:NavigationViewItem Icon="Refresh"
-                                          Content="Menu Item3"
-                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.Page3" />
+                <winui:NavigationViewItem Content="Watchlist"
+                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.WatchListPage">
+                    <winui:NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE728;" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItem Content="History"
+                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.Page2">
+                    <winui:NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE9D9;" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+                <winui:NavigationViewItem Content="Portfolio"
+                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.Page3">
+                    <winui:NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE825;" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
                 <winui:NavigationViewItem Icon="PreviewLink"
                                           Content="News"
                                           Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.NewsPage" />
@@ -94,7 +103,7 @@
             </Canvas>
         </Viewbox>
 
-         <!-- Title Bar --> 
+        <!-- Title Bar -->
         <Grid x:Name="AppTitleBar"
               Background="Transparent"
               Height="32"

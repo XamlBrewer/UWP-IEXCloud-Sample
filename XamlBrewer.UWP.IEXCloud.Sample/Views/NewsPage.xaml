@@ -7,46 +7,52 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
       Background="Transparent">
-    <winui:ScrollViewer VerticalScrollBarVisibility="Auto"
-                        VerticalScrollMode="Enabled"
-                        HorizontalScrollMode="Disabled"
-                        Grid.Row="2">
-        <winui:ItemsRepeater x:Name="NewsItems"
-                             Margin="0 0 20 20"
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Stretch">
-            <winui:ItemsRepeater.Layout>
-                <winui:StackLayout Orientation="Vertical"
-                                   Spacing="20" />
-            </winui:ItemsRepeater.Layout>
-            <winui:ItemsRepeater.ItemTemplate>
-                <DataTemplate>
-                    <RelativePanel>
-                        <TextBlock x:Name="Headline"
-                                   Text="{Binding headline}"
-                                   FontWeight="SemiBold"
-                                   TextWrapping="WrapWholeWords"
-                                   Margin="0 0 0 10" />
-                        <Image x:Name="Image"
-                               Source="{Binding image}"
-                               RelativePanel.Below="Headline"
-                               RelativePanel.AlignLeftWith="Headline"
-                               Width="180"
-                               Stretch="Uniform" />
-                        <TextBlock x:Name="Summary"
-                                   Text="{Binding summary}"
-                                   RelativePanel.RightOf="Image"
-                                   RelativePanel.AlignTopWith="Image"
-                                   TextWrapping="WrapWholeWords"
-                                   Margin="20 0 0 0" />
-                        <TextBlock x:Name="Source"
-                                   RelativePanel.Below="Summary"
-                                   RelativePanel.AlignLeftWith="Summary"
-                                   Margin="20 0 0 0"
-                                   VerticalAlignment="Top"><Hyperlink NavigateUri="{Binding url}"><Run Text="{Binding source}" /></Hyperlink></TextBlock>
-                    </RelativePanel>
-                </DataTemplate>
-            </winui:ItemsRepeater.ItemTemplate>
-        </winui:ItemsRepeater>
-    </winui:ScrollViewer>
+    <Grid Background="Transparent">
+        <winui:ScrollViewer VerticalScrollBarVisibility="Auto"
+                            VerticalScrollMode="Enabled"
+                            HorizontalScrollMode="Disabled"
+                            Grid.Row="2">
+            <winui:ItemsRepeater x:Name="NewsItems"
+                                 Margin="0 0 20 20"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch">
+                <winui:ItemsRepeater.Layout>
+                    <winui:StackLayout Orientation="Vertical"
+                                       Spacing="20" />
+                </winui:ItemsRepeater.Layout>
+                <winui:ItemsRepeater.ItemTemplate>
+                    <DataTemplate>
+                        <RelativePanel>
+                            <TextBlock x:Name="Headline"
+                                       Text="{Binding headline}"
+                                       FontWeight="SemiBold"
+                                       TextWrapping="WrapWholeWords"
+                                       Margin="0 0 0 10" />
+                            <Image x:Name="Image"
+                                   Source="{Binding image}"
+                                   RelativePanel.Below="Headline"
+                                   RelativePanel.AlignLeftWith="Headline"
+                                   Width="180"
+                                   Stretch="Uniform" />
+                            <TextBlock x:Name="Summary"
+                                       Text="{Binding summary}"
+                                       RelativePanel.RightOf="Image"
+                                       RelativePanel.AlignTopWith="Image"
+                                       TextWrapping="WrapWholeWords"
+                                       Margin="20 0 0 0" />
+                            <TextBlock x:Name="Source"
+                                       RelativePanel.Below="Summary"
+                                       RelativePanel.AlignLeftWith="Summary"
+                                       Margin="20 0 0 0"
+                                       VerticalAlignment="Top"><Hyperlink NavigateUri="{Binding url}"><Run Text="{Binding source}" /></Hyperlink></TextBlock>
+                        </RelativePanel>
+                    </DataTemplate>
+                </winui:ItemsRepeater.ItemTemplate>
+            </winui:ItemsRepeater>
+        </winui:ScrollViewer>
+        <winui:ProgressRing x:Name="ProgressRing"
+                            Width="64"
+                            Height="64"
+                            Background="Transparent" />
+    </Grid>
 </Page>
