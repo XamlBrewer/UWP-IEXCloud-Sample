@@ -13,7 +13,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
         {
             this.InitializeComponent();
             ContentGrid.Translation += new Vector3(0, 0, 6);
-            ContentGrid2.Translation += new Vector3(0, 0, 6);
+            SandboxContentGrid.Translation += new Vector3(0, 0, 6);
             SettingsGrid.RegisterImplicitAnimations();
 
             Loaded += Page1_Loaded;
@@ -29,6 +29,9 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
 
         private async void TestTokensButton_Click(object sender, RoutedEventArgs e)
         {
+            TestTokensTest.Text = String.Empty;
+            TestTokensRing.IsActive = true;
+
             using (var iexCloudClient = IEXCloudService.GetClient())
             {
                 try
@@ -48,10 +51,15 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                     TestTokensTest.Text = ex.Message;
                 }
             }
+
+            TestTokensRing.IsActive = false;
         }
 
         private async void TestSandBoxTokensButton_Click(object sender, RoutedEventArgs e)
         {
+            TestSandboxTokensTest.Text = String.Empty;
+            TestSandboxTokensRing.IsActive = true;
+
             using (var iexCloudClient = IEXCloudService.GetClient())
             {
                 try
@@ -59,18 +67,20 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                     var response = await iexCloudClient.Stock.QuoteAsync("MSFT");
                     if (response.ErrorMessage == null)
                     {
-                        TestTokensTest2.Text = "Connection and tokens are OK.";
+                        TestSandboxTokensTest.Text = "Connection and tokens are OK.";
                     }
                     else
                     {
-                        TestTokensTest2.Text = response.ErrorMessage;
+                        TestSandboxTokensTest.Text = response.ErrorMessage;
                     }
                 }
                 catch (Exception ex)
                 {
-                    TestTokensTest2.Text = ex.Message;
+                    TestSandboxTokensTest.Text = ex.Message;
                 }
             }
+
+            TestSandboxTokensRing.IsActive = false;
         }
     }
 }

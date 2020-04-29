@@ -33,7 +33,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample
                 titleBar.BackgroundColor = Colors.Transparent;
                 titleBar.ButtonBackgroundColor = Colors.Transparent;
                 titleBar.ButtonInactiveBackgroundColor = Colors.SlateGray;
-                titleBar.ButtonForegroundColor = Color.FromArgb(255, 214, 117, 36);
+                titleBar.ButtonForegroundColor = Color.FromArgb(255, 188, 143, 143);
             }
 
             this.InitializeComponent();

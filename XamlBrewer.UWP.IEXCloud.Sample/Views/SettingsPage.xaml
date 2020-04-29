@@ -41,12 +41,17 @@
                     <Button Content="Test your tokens"
                             Click="TestTokensButton_Click"
                             HorizontalAlignment="Right" />
+                    <winui:ProgressRing x:Name="TestTokensRing"
+                                        IsActive="False"
+                                        Background="Transparent"
+                                        Height="24"
+                                        Width="24" />
                 </Grid>
             </StackPanel>
             <!-- Gets the animation -->
             <Grid>
                 <!-- Casts the shadow -->
-                <StackPanel x:Name="ContentGrid2"
+                <StackPanel x:Name="SandboxContentGrid"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch"
                             Background="GhostWhite"
@@ -63,7 +68,8 @@
                         <ToggleSwitch IsOn="{x:Bind Settings.UseSandBox, Mode=TwoWay}"
                                       HorizontalAlignment="Right"
                                       FlowDirection="RightToLeft"
-                                      HorizontalContentAlignment="Right" Margin="0 -20 0 0"/>
+                                      HorizontalContentAlignment="Right"
+                                      Margin="0 -20 0 0" />
                     </Grid>
                     <TextBox Header="Publishable key"
                              Text="{x:Bind Settings.PublishableSandBoxKey, Mode=TwoWay}"
@@ -72,11 +78,16 @@
                                  Password="{x:Bind Settings.SecretSandBoxKey, Mode=TwoWay}"
                                  Margin="0 0 0 20" />
                     <Grid Margin="0 0 0 20">
-                        <TextBlock x:Name="TestTokensTest2"
+                        <TextBlock x:Name="TestSandboxTokensTest"
                                    VerticalAlignment="Center" />
                         <Button Content="Test your tokens"
                                 Click="TestSandBoxTokensButton_Click"
                                 HorizontalAlignment="Right" />
+                        <winui:ProgressRing x:Name="TestSandboxTokensRing"
+                                            IsActive="False"
+                                            Background="Transparent"
+                                            Height="24"
+                                            Width="24" />
                     </Grid>
                 </StackPanel>
             </Grid>
