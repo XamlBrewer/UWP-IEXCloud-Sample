@@ -12,6 +12,7 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <Color x:Key="SystemAccentColor">RosyBrown</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

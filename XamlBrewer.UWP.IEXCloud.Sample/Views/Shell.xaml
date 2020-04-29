@@ -104,7 +104,7 @@
                                Padding="0"
                                Margin="48 0 8 12">
                                     <Run Text="XAML"
-                                         Foreground="#D67524" />
+                                         Foreground="{StaticResource SystemAccentColor}" />
                                     <Run Text="Brewer"
                                          Foreground="DimGray"
                                          FontWeight="Light" />
@@ -124,7 +124,7 @@
             <TextBlock x:Name="AppTitle"
                        xmlns:appmodel="using:Windows.ApplicationModel"
                        Text="{x:Bind appmodel:Package.Current.DisplayName}"
-                       Foreground="#D67524"
+                       Foreground="{StaticResource SystemAccentColor}"
                        IsHitTestVisible="False"
                        Margin="12 8 0 0"
                        FontSize="12" />
