@@ -19,7 +19,7 @@
 
         <!-- Background -->
         <Image Stretch="UniformToFill"
-               Opacity=".15"
+               Opacity=".2"
                Source="/Assets/Background.jpg"
                Grid.RowSpan="10"
                Grid.ColumnSpan="10"
@@ -55,7 +55,17 @@
                                           Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.NewsPage" />
             </winui:NavigationView.MenuItems>
             <Frame x:Name="ContentFrame"
-                   Padding="16 0" />
+                   Padding="16 0">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition>
+                            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                <DrillInNavigationTransitionInfo />
+                            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                        </NavigationThemeTransition>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
         </winui:NavigationView>
 
         <!-- XAML Brewer Logo -->
