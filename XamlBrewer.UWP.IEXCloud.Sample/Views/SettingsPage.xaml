@@ -14,15 +14,18 @@
         </Grid.Resources>
         <Grid x:Name="ShadowCatcher"
               Margin="-8" />
-        <StackPanel Background="Transparent">
+        <VariableSizedWrapGrid x:Name="SettingsGrid"
+                               Orientation="Horizontal"
+                               ItemWidth="400"
+                               ItemHeight="284">
+
             <StackPanel x:Name="ContentGrid"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Left"
-                        MinWidth="400"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
                         Background="GhostWhite"
                         Shadow="{StaticResource SharedShadow}"
                         Padding="20"
-                        Margin="0 0 0 20">
+                        Margin="0 0 20 20">
                 <TextBlock Text="Your IEX Cloud Account"
                            FontWeight="SemiBold"
                            Margin="0 0 0 20" />
@@ -40,34 +43,43 @@
                             HorizontalAlignment="Right" />
                 </Grid>
             </StackPanel>
-            <StackPanel x:Name="ContentGrid2"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Left"
-                        MinWidth="400"
-                        Background="GhostWhite"
-                        Shadow="{StaticResource SharedShadow}"
-                        Padding="20">
-                <TextBlock Text="Your IEX Cloud SandBox Account"
-                           FontWeight="SemiBold"
-                           Margin="0 0 0 20" />
-                <TextBox Header="Publishable key"
-                         Text="{x:Bind Settings.PublishableSandBoxKey, Mode=TwoWay}"
-                         Margin="0 0 0 20" />
-                <PasswordBox Header="Secret key"
-                             Password="{x:Bind Settings.SecretSandBoxKey, Mode=TwoWay}"
+            <!-- Gets the animation -->
+            <Grid>
+                <!-- Casts the shadow -->
+                <StackPanel x:Name="ContentGrid2"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"
+                            Background="GhostWhite"
+                            Shadow="{StaticResource SharedShadow}"
+                            Padding="20"
+                            Margin="0 0 20 20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Your IEX Cloud SandBox Account"
+                                   FontWeight="SemiBold"
+                                   Margin="0 0 0 20" />
+                        <ToggleSwitch IsOn="{x:Bind Settings.UseSandBox, Mode=TwoWay}"
+                                      HorizontalAlignment="Right"
+                                      FlowDirection="RightToLeft"
+                                      HorizontalContentAlignment="Right" Margin="0 -20 0 0"/>
+                    </Grid>
+                    <TextBox Header="Publishable key"
+                             Text="{x:Bind Settings.PublishableSandBoxKey, Mode=TwoWay}"
                              Margin="0 0 0 20" />
-                <Grid Margin="0 0 0 20">
-                    <TextBlock x:Name="TestTokensTest2"
-                               VerticalAlignment="Center" />
-                    <Button Content="Test your tokens"
-                            Click="TestSandBoxTokensButton_Click"
-                            HorizontalAlignment="Right" />
-                </Grid>
-
-                <ToggleSwitch Header="Use Sandbox only"
-                              IsOn="{x:Bind Settings.UseSandBox, Mode=TwoWay}" />
-
-            </StackPanel>
-        </StackPanel>
+                    <PasswordBox Header="Secret key"
+                                 Password="{x:Bind Settings.SecretSandBoxKey, Mode=TwoWay}"
+                                 Margin="0 0 0 20" />
+                    <Grid Margin="0 0 0 20">
+                        <TextBlock x:Name="TestTokensTest2"
+                                   VerticalAlignment="Center" />
+                        <Button Content="Test your tokens"
+                                Click="TestSandBoxTokensButton_Click"
+                                HorizontalAlignment="Right" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </VariableSizedWrapGrid>
     </Grid>
 </Page>

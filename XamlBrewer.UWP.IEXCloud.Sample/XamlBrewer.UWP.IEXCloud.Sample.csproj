@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PanelExtensions.cs" />
     <Compile Include="Services\FormattingService.cs" />
     <Compile Include="Services\IEXCloudService.cs" />
     <Compile Include="Services\Settings\ObservableSettings.cs" />

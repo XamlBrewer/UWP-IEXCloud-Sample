@@ -2,6 +2,7 @@
 using System.Numerics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using XamlBrewer.Fluent;
 using XamlBrewer.UWP.IEXCloud.Sample.Services;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample.Views
@@ -11,6 +12,9 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
         public SettingsPage()
         {
             this.InitializeComponent();
+            ContentGrid.Translation += new Vector3(0, 0, 6);
+            ContentGrid2.Translation += new Vector3(0, 0, 6);
+            SettingsGrid.RegisterImplicitAnimations();
 
             Loaded += Page1_Loaded;
         }
@@ -20,8 +24,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
         private void Page1_Loaded(object sender, RoutedEventArgs e)
         {
             SharedShadow.Receivers.Add(ShadowCatcher);
-            ContentGrid.Translation += new Vector3(0, 0, 6);
-            ContentGrid2.Translation += new Vector3(0, 0, 6);
+
         }
 
         private async void TestTokensButton_Click(object sender, RoutedEventArgs e)
