@@ -129,5 +129,34 @@
                        Margin="12 8 0 0"
                        FontSize="12" />
         </Grid>
+
+        <winui:TeachingTip x:Name="SettingsTip"
+                           Title="IEX Cloud Account Required"
+                           CloseButtonClick="SettingsTip_CloseButtonClick"
+                           IsOpen="False"
+                           Background="GhostWhite">
+            <winui:TeachingTip.Content>
+                <Grid Padding="10">
+                    <Viewbox Height="80"
+                             VerticalAlignment="Bottom"
+                             HorizontalAlignment="Left"
+                             Margin="10">
+                        <Path Fill="{StaticResource SystemAccentColor}"
+                              Opacity=".4"
+                              Data="M14.74,3A9,9,0,0,0,6.26,9h0a6,6,0,0,0,0,12h8.49a9,9,0,0,0,0-18Zm0,14.5h-3A6,6,0,0,0,9.62,10a5.5,5.5,0,1,1,5.13,7.47Z" />
+                    </Viewbox>
+                    <TextBlock TextWrapping="WrapWholeWords">
+                        <Run>This app is nothing without its data. All information is pulled from the IEX Cloud services.</Run>
+                        <LineBreak />
+                        <LineBreak />
+                        <Run>Create your free account </Run>
+                        <Hyperlink NavigateUri="https://iexcloud.io/s/6dfaa988 ">right here</Hyperlink>
+                        <Run>, and place your tokens in the Settings.</Run>
+                        <LineBreak />
+                        <LineBreak />
+                    </TextBlock>
+                </Grid>
+            </winui:TeachingTip.Content>
+        </winui:TeachingTip>
     </Grid>
 </Page>
