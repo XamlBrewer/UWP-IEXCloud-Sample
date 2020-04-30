@@ -39,7 +39,7 @@
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
                 <winui:NavigationViewItem Content="History"
-                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.Page2">
+                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.HistoryPage">
                     <winui:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE9D9;" />
                     </winui:NavigationViewItem.Icon>

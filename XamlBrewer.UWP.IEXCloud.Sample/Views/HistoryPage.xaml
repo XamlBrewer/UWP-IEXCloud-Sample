@@ -1,0 +1,79 @@
+﻿<Page x:Class="XamlBrewer.UWP.IEXCloud.Sample.Views.HistoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:XamlBrewer.UWP.IEXCloud.Sample.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
+      xmlns:telerikPrimitives="using:Telerik.UI.Xaml.Controls.Primitives"
+      mc:Ignorable="d"
+      Background="Transparent">
+
+    <Grid Background="Transparent">
+        <telerikChart:RadCartesianChart x:Name="Chart"
+                                        Margin="0 0 0 60">
+            <telerikChart:RadCartesianChart.HorizontalAxis>
+                <telerikChart:DateTimeCategoricalAxis MajorTickInterval="5" />
+            </telerikChart:RadCartesianChart.HorizontalAxis>
+            <telerikChart:RadCartesianChart.VerticalAxis>
+                <telerikChart:LinearAxis />
+            </telerikChart:RadCartesianChart.VerticalAxis>
+            <telerikChart:LineSeries x:Name="HistoricPrices"
+                                     LegendTitle="MSFT 1 Month"
+                                     IsVisibleInLegend="True"
+                                     Stroke="SlateGray">
+                <telerikChart:LineSeries.CategoryBinding>
+                    <telerikChart:PropertyNameDataPointBinding PropertyName="date" />
+                </telerikChart:LineSeries.CategoryBinding>
+                <telerikChart:LineSeries.ValueBinding>
+                    <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
+                </telerikChart:LineSeries.ValueBinding>
+            </telerikChart:LineSeries>
+            <telerikChart:CandlestickSeries x:Name="CandleSticks">
+                <telerikChart:CandlestickSeries.DefaultVisualStyle>
+                    <Style TargetType="telerikChart:Candlestick">
+                        <Setter Property="StrokeThickness"
+                                Value="2" />
+                        <Setter Property="UpStroke"
+                                Value="OliveDrab" />
+                        <Setter Property="DownStroke"
+                                Value="IndianRed" />
+                        <Setter Property="UpFill"
+                                Value="Transparent" />
+                        <Setter Property="DownFill"
+                                Value="Transparent" />
+                    </Style>
+                </telerikChart:CandlestickSeries.DefaultVisualStyle>
+                <telerikChart:CandlestickSeries.CategoryBinding>
+                    <telerikChart:PropertyNameDataPointBinding PropertyName="date" />
+                </telerikChart:CandlestickSeries.CategoryBinding>
+                <telerikChart:CandlestickSeries.HighBinding>
+                    <telerikChart:PropertyNameDataPointBinding PropertyName="high" />
+                </telerikChart:CandlestickSeries.HighBinding>
+                <telerikChart:CandlestickSeries.LowBinding>
+                    <telerikChart:PropertyNameDataPointBinding PropertyName="low" />
+                </telerikChart:CandlestickSeries.LowBinding>
+                <telerikChart:CandlestickSeries.OpenBinding>
+                    <telerikChart:PropertyNameDataPointBinding PropertyName="open" />
+                </telerikChart:CandlestickSeries.OpenBinding>
+                <telerikChart:CandlestickSeries.CloseBinding>
+                    <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
+                </telerikChart:CandlestickSeries.CloseBinding>
+            </telerikChart:CandlestickSeries>
+            <telerikChart:RadCartesianChart.Behaviors>
+                <!-- TODO: restyle -->
+                <!-- https://docs.telerik.com/devtools/universal-windows-platform/controls/radchart/behaviors/charttrackballbehavior -->
+                <telerikChart:ChartTrackBallBehavior InfoMode="Multiple" />
+            </telerikChart:RadCartesianChart.Behaviors>
+        </telerikChart:RadCartesianChart>
+        <telerikPrimitives:RadLegendControl LegendProvider="{Binding ElementName=Chart}"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"
+                                            Margin="20 0" />
+        <winui:ProgressRing x:Name="ProgressRing"
+                            Width="64"
+                            Height="64"
+                            Background="Transparent" />
+    </Grid>
+</Page>
