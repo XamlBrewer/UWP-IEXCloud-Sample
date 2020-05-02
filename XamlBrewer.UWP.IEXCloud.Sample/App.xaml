@@ -13,6 +13,8 @@
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
             <Color x:Key="SystemAccentColor">RosyBrown</Color>
+            <SolidColorBrush x:Key="SystemAccentColorBrush"
+                             Color="{StaticResource SystemAccentColor}" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

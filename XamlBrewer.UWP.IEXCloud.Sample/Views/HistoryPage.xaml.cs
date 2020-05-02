@@ -1,5 +1,4 @@
 ﻿using System;
-using VSLee.IEXSharp.Model.Stock.Request;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using XamlBrewer.UWP.IEXCloud.Sample.Services;

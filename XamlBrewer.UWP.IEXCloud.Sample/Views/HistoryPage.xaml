@@ -6,9 +6,38 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
       xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
+      xmlns:telerikChartPrimitives="using:Telerik.UI.Xaml.Controls.Chart.Primitives"
       xmlns:telerikPrimitives="using:Telerik.UI.Xaml.Controls.Primitives"
+      xmlns:response="using:VSLee.IEXSharp.Model.Stock.Response"
       mc:Ignorable="d"
       Background="Transparent">
+    <Page.Resources>
+        <Style TargetType="telerikChartPrimitives:TrackBallInfoControl">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource SystemAccentColor}"
+                                     Opacity=".85" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerikChartPrimitives:TrackBallInfoControl">
+                        <Border Margin="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <StackPanel x:Name="PART_Panel" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid Background="Transparent">
         <telerikChart:RadCartesianChart x:Name="Chart"
@@ -29,8 +58,12 @@
                 <telerikChart:LineSeries.ValueBinding>
                     <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
                 </telerikChart:LineSeries.ValueBinding>
+                <telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
+                    <DataTemplate />
+                </telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
             </telerikChart:LineSeries>
-            <telerikChart:CandlestickSeries x:Name="CandleSticks">
+            <telerikChart:CandlestickSeries x:Name="CandleSticks"
+                                            DisplayName="Bananas">
                 <telerikChart:CandlestickSeries.DefaultVisualStyle>
                     <Style TargetType="telerikChart:Candlestick">
                         <Setter Property="StrokeThickness"
@@ -60,11 +93,37 @@
                 <telerikChart:CandlestickSeries.CloseBinding>
                     <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
                 </telerikChart:CandlestickSeries.CloseBinding>
+                <telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock x:Name="Data"
+                                       Text="{Binding DataPoint.DataItem.date}"
+                                       FontWeight="SemiBold"
+                                       Margin="10"
+                                       HorizontalAlignment="Center" />
+                            <TextBlock Margin="10 0"><Run Text="Open: " /><Run Text="{Binding DataPoint.DataItem.open}" /></TextBlock>
+                            <TextBlock Margin="10 5"><Run Text="Low: " /><Run Text="{Binding DataPoint.DataItem.low}" /></TextBlock>
+                            <TextBlock Margin="10 0"><Run Text="High: " /><Run Text="{Binding DataPoint.DataItem.high}" /></TextBlock>
+                            <TextBlock Margin="10 5 10 10"><Run Text="Close: " /><Run Text="{Binding DataPoint.DataItem.close}" /></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
             </telerikChart:CandlestickSeries>
             <telerikChart:RadCartesianChart.Behaviors>
-                <!-- TODO: restyle -->
-                <!-- https://docs.telerik.com/devtools/universal-windows-platform/controls/radchart/behaviors/charttrackballbehavior -->
-                <telerikChart:ChartTrackBallBehavior InfoMode="Multiple" />
+                <telerikChart:ChartTrackBallBehavior InfoMode="Multiple"
+                                                     SnapMode="None"
+                                                     ShowIntersectionPoints="False"
+                                                     ShowInfo="True">
+                    <telerikChart:ChartTrackBallBehavior.LineStyle>
+                        <Style TargetType="Polyline">
+                            <Setter Property="Stroke"
+                                    Value="{StaticResource SystemAccentColorBrush}" />
+                            <Setter Property="StrokeThickness"
+                                    Value="1" />
+                        </Style>
+                    </telerikChart:ChartTrackBallBehavior.LineStyle>
+                </telerikChart:ChartTrackBallBehavior>
+
             </telerikChart:RadCartesianChart.Behaviors>
         </telerikChart:RadCartesianChart>
         <telerikPrimitives:RadLegendControl LegendProvider="{Binding ElementName=Chart}"
