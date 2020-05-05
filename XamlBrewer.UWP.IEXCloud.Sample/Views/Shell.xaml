@@ -45,7 +45,7 @@
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
                 <winui:NavigationViewItem Content="Portfolio"
-                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.Page3">
+                                          Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.PortfolioPage">
                     <winui:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE825;" />
                     </winui:NavigationViewItem.Icon>

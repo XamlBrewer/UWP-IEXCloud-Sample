@@ -1,0 +1,53 @@
+﻿<Page x:Class="XamlBrewer.UWP.IEXCloud.Sample.Views.PortfolioPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:XamlBrewer.UWP.IEXCloud.Sample.Views"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
+      xmlns:telerikChartPrimitives="using:Telerik.UI.Xaml.Controls.Chart.Primitives"
+      xmlns:telerikPrimitives="using:Telerik.UI.Xaml.Controls.Primitives"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="Transparent">
+
+    <Grid Background="Transparent">
+        <RelativePanel x:Name="PortfolioItemPanel"
+                       Height="300"
+                       Width="300"
+                       Background="Transparent">
+            <telerikChart:RadCartesianChart x:Name="Sparkline"
+                                            Margin="20"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Stretch"
+                                            Height="100">
+                <telerikChart:RadCartesianChart.HorizontalAxis>
+                    <telerikChart:DateTimeCategoricalAxis Visibility="Collapsed" />
+                </telerikChart:RadCartesianChart.HorizontalAxis>
+                <telerikChart:RadCartesianChart.VerticalAxis>
+                    <telerikChart:LinearAxis x:Name="VerticalAxis"
+                                             Visibility="Collapsed" />
+                </telerikChart:RadCartesianChart.VerticalAxis>
+                <telerikChart:SplineSeries x:Name="HistoricalPrices"
+                                           Stroke="SlateGray">
+                    <telerikChart:LineSeries.CategoryBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="date" />
+                    </telerikChart:LineSeries.CategoryBinding>
+                    <telerikChart:LineSeries.ValueBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
+                    </telerikChart:LineSeries.ValueBinding>
+                </telerikChart:SplineSeries>
+                <telerikChart:RadCartesianChart.Behaviors>
+                    <telerikChart:ChartTrackBallBehavior InfoMode="Multiple"
+                                                         SnapMode="None"
+                                                         ShowIntersectionPoints="False"
+                                                         ShowInfo="True" />
+                </telerikChart:RadCartesianChart.Behaviors>
+            </telerikChart:RadCartesianChart>
+        </RelativePanel>
+        <winui:ProgressRing x:Name="ProgressRing"
+                            Width="64"
+                            Height="64"
+                            Background="Transparent" />
+    </Grid>
+</Page>
