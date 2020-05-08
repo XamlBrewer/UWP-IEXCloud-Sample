@@ -7,7 +7,7 @@ using VSLee.IEXSharp.Model.Stock.Response;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample.Models
 {
-    public class PorfolioItem
+    public class PortfolioItem
     {
         public string Symbol { get; set; }
 
@@ -18,5 +18,9 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Models
         public double BuyPrice { get; set; }
 
         public IEnumerable<HistoricalPriceResponse> HistoricalPrices { get; set; }
+
+        public double Minimum => (double)HistoricalPrices.Select(h => h.close).Min();
+
+        public double Maximum => (double)HistoricalPrices.Select(h => h.close).Max();
     }
 }

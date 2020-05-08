@@ -8,6 +8,8 @@
       mc:Ignorable="d"
       Background="Transparent">
     <Grid Background="Transparent">
+        <!-- No need for a scroll host since we're targeting 1809 or higher -->
+        <!--<winui:ItemsRepeaterScrollHost>-->
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       VerticalScrollMode="Enabled"
                       HorizontalScrollMode="Disabled">

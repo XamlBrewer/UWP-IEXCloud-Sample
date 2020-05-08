@@ -8,43 +8,56 @@
       xmlns:telerikPrimitives="using:Telerik.UI.Xaml.Controls.Primitives"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:XamlBrewer.UWP.IEXCloud.Sample.Models"
       mc:Ignorable="d"
       Background="Transparent">
 
     <Grid Background="Transparent">
-        <RelativePanel x:Name="PortfolioItemPanel"
-                       Height="300"
-                       Width="300"
-                       Background="Transparent">
-            <telerikChart:RadCartesianChart x:Name="Sparkline"
-                                            Margin="20"
-                                            VerticalAlignment="Top"
-                                            HorizontalAlignment="Stretch"
-                                            Height="100">
-                <telerikChart:RadCartesianChart.HorizontalAxis>
-                    <telerikChart:DateTimeCategoricalAxis Visibility="Collapsed" />
-                </telerikChart:RadCartesianChart.HorizontalAxis>
-                <telerikChart:RadCartesianChart.VerticalAxis>
-                    <telerikChart:LinearAxis x:Name="VerticalAxis"
-                                             Visibility="Collapsed" />
-                </telerikChart:RadCartesianChart.VerticalAxis>
-                <telerikChart:SplineSeries x:Name="HistoricalPrices"
-                                           Stroke="SlateGray">
-                    <telerikChart:LineSeries.CategoryBinding>
-                        <telerikChart:PropertyNameDataPointBinding PropertyName="date" />
-                    </telerikChart:LineSeries.CategoryBinding>
-                    <telerikChart:LineSeries.ValueBinding>
-                        <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
-                    </telerikChart:LineSeries.ValueBinding>
-                </telerikChart:SplineSeries>
-                <telerikChart:RadCartesianChart.Behaviors>
-                    <telerikChart:ChartTrackBallBehavior InfoMode="Multiple"
-                                                         SnapMode="None"
-                                                         ShowIntersectionPoints="False"
-                                                         ShowInfo="True" />
-                </telerikChart:RadCartesianChart.Behaviors>
-            </telerikChart:RadCartesianChart>
-        </RelativePanel>
+        <GridView x:Name="PortfolioGrid"
+                  x:DefaultBindMode="OneWay">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="models:PortfolioItem">
+                    <RelativePanel x:Name="PortfolioItemPanel"
+                                   Height="300"
+                                   Width="300"
+                                   Background="Transparent">
+                        <TextBlock Text="{x:Bind Symbol}" />
+                        <telerikChart:RadCartesianChart x:Name="Sparkline"
+                                                        DataContext="{x:Bind HistoricalPrices}"
+                                                        Margin="20"
+                                                        VerticalAlignment="Top"
+                                                        HorizontalAlignment="Stretch"
+                                                        Height="100">
+                            <telerikChart:RadCartesianChart.HorizontalAxis>
+                                <telerikChart:DateTimeCategoricalAxis Visibility="Collapsed" />
+                            </telerikChart:RadCartesianChart.HorizontalAxis>
+                            <telerikChart:RadCartesianChart.VerticalAxis>
+                                <telerikChart:LinearAxis x:Name="VerticalAxis"
+                                                         Visibility="Collapsed"
+                                                         Minimum="{x:Bind Minimum}"
+                                                         Maximum="{x:Bind Maximum}" />
+                            </telerikChart:RadCartesianChart.VerticalAxis>
+                            <telerikChart:SplineSeries ItemsSource="{x:Bind HistoricalPrices}"
+                                                       Stroke="SlateGray">
+                                <telerikChart:LineSeries.CategoryBinding>
+                                    <telerikChart:PropertyNameDataPointBinding PropertyName="date" />
+                                </telerikChart:LineSeries.CategoryBinding>
+                                <telerikChart:LineSeries.ValueBinding>
+                                    <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
+                                </telerikChart:LineSeries.ValueBinding>
+                            </telerikChart:SplineSeries>
+                            <telerikChart:RadCartesianChart.Behaviors>
+                                <telerikChart:ChartTrackBallBehavior InfoMode="Multiple"
+                                                                     SnapMode="None"
+                                                                     ShowIntersectionPoints="False"
+                                                                     ShowInfo="True" />
+                            </telerikChart:RadCartesianChart.Behaviors>
+                        </telerikChart:RadCartesianChart>
+                    </RelativePanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+        </GridView>
         <winui:ProgressRing x:Name="ProgressRing"
                             Width="64"
                             Height="64"

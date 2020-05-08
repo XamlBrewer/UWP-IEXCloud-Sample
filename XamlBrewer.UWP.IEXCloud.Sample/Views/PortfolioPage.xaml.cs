@@ -32,7 +32,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
             // Test with one item. Grid comes later ...
             //
 
-            var item = new PorfolioItem
+            var item = new PortfolioItem
             {
                 Symbol = "MSFT",
                 BuyDate = new DateTime(2020, 1, 1),
@@ -56,9 +56,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                 else
                 {
                     item.HistoricalPrices = response.Data;
-                    VerticalAxis.Minimum = (double)item.HistoricalPrices.Select(h => h.close).Min();
-                    VerticalAxis.Maximum = (double)item.HistoricalPrices.Select(h => h.close).Max();
-                    HistoricalPrices.ItemsSource = item.HistoricalPrices;
+                    PortfolioGrid.ItemsSource = new List<PortfolioItem> { item };
                 }
             }
 
