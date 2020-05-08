@@ -37,7 +37,7 @@
             <TextBlock Text="High"
                        Grid.Column="6" />
         </Grid>
-        <winui:ScrollViewer VerticalScrollBarVisibility="Auto"
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
                             VerticalScrollMode="Enabled"
                             HorizontalScrollMode="Disabled"
                             Grid.Row="1">
@@ -81,7 +81,7 @@
                     </DataTemplate>
                 </winui:ItemsRepeater.ItemTemplate>
             </winui:ItemsRepeater>
-        </winui:ScrollViewer>
+        </ScrollViewer>
         <winui:ProgressRing x:Name="ProgressRing"
                             Width="64"
                             Height="64"

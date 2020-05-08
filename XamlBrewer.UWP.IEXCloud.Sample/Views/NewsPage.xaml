@@ -8,10 +8,9 @@
       mc:Ignorable="d"
       Background="Transparent">
     <Grid Background="Transparent">
-        <winui:ScrollViewer VerticalScrollBarVisibility="Auto"
-                            VerticalScrollMode="Enabled"
-                            HorizontalScrollMode="Disabled"
-                            Grid.Row="2">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      VerticalScrollMode="Enabled"
+                      HorizontalScrollMode="Disabled">
             <winui:ItemsRepeater x:Name="NewsItems"
                                  Margin="0 0 20 20"
                                  HorizontalAlignment="Stretch"
@@ -49,7 +48,7 @@
                     </DataTemplate>
                 </winui:ItemsRepeater.ItemTemplate>
             </winui:ItemsRepeater>
-        </winui:ScrollViewer>
+        </ScrollViewer>
         <winui:ProgressRing x:Name="ProgressRing"
                             Width="64"
                             Height="64"
