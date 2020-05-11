@@ -9,9 +9,36 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:models="using:XamlBrewer.UWP.IEXCloud.Sample.Models"
+      xmlns:sys="using:System"
       mc:Ignorable="d"
       Background="Transparent">
-
+    <Page.Resources>
+        <Style TargetType="telerikChartPrimitives:TrackBallInfoControl">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource SystemAccentColor}"
+                                     Opacity=".85" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerikChartPrimitives:TrackBallInfoControl">
+                        <Border Margin="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <StackPanel x:Name="PART_Panel" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid Background="Transparent">
         <GridView x:Name="PortfolioGrid"
                   x:DefaultBindMode="OneWay">
@@ -20,11 +47,19 @@
                     <RelativePanel x:Name="PortfolioItemPanel"
                                    Height="300"
                                    Width="300"
-                                   Background="Transparent">
-                        <TextBlock Text="{x:Bind Symbol}" />
+                                   Background="Transparent"
+                                   Padding="20">
+                        <TextBlock x:Name="Symbol"
+                                   Text="{x:Bind Symbol}"
+                                   FontWeight="SemiBold" />
+                        <TextBlock x:Name="History"
+                                   RelativePanel.Below="Symbol">
+                            <Run Text="Bought " /><Run Text="{x:Bind Quantity}" /><Run Text=" at " /><Run Text="{x:Bind BuyPrice}" /><Run Text=" on " /><Run Text="{x:Bind sys:String.Format('{0:d}', BuyDate)}" /><Run>.</Run>
+                        </TextBlock>
                         <telerikChart:RadCartesianChart x:Name="Sparkline"
                                                         DataContext="{x:Bind HistoricalPrices}"
-                                                        Margin="20"
+                                                        RelativePanel.Below="History"
+                                                        Margin="0 20"
                                                         VerticalAlignment="Top"
                                                         HorizontalAlignment="Stretch"
                                                         Height="100">
@@ -45,14 +80,59 @@
                                 <telerikChart:LineSeries.ValueBinding>
                                     <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
                                 </telerikChart:LineSeries.ValueBinding>
+                                <telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding DataPoint.DataItem.date}"
+                                                       Margin="10"
+                                                       HorizontalAlignment="Center" />
+                                            <TextBlock Margin="10 0 10 10"><Run Text="Close: " /><Run Text="{Binding DataPoint.DataItem.close}" /></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
                             </telerikChart:SplineSeries>
                             <telerikChart:RadCartesianChart.Behaviors>
                                 <telerikChart:ChartTrackBallBehavior InfoMode="Multiple"
                                                                      SnapMode="None"
                                                                      ShowIntersectionPoints="False"
-                                                                     ShowInfo="True" />
+                                                                     ShowInfo="True">
+                                    <telerikChart:ChartTrackBallBehavior.LineStyle>
+                                        <Style TargetType="Polyline">
+                                            <Setter Property="Stroke"
+                                                    Value="Transparent" />
+                                            <Setter Property="StrokeThickness"
+                                                    Value="0" />
+                                        </Style>
+                                    </telerikChart:ChartTrackBallBehavior.LineStyle>
+                                </telerikChart:ChartTrackBallBehavior>
                             </telerikChart:RadCartesianChart.Behaviors>
                         </telerikChart:RadCartesianChart>
+                        <TextBlock x:Name="Then"
+                                   Text="then"
+                                   RelativePanel.Below="Sparkline"
+                                   RelativePanel.AlignLeftWith="Sparkline"
+                                   Foreground="SlateGray" />
+                        <TextBlock Text="now"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   RelativePanel.Below="Sparkline"
+                                   RelativePanel.AlignHorizontalCenterWith="Sparkline"
+                                   Foreground="SlateGray" />
+                        <TextBlock Text="performance"
+                                   RelativePanel.Below="Sparkline"
+                                   RelativePanel.AlignRightWith="Sparkline"
+                                   Foreground="SlateGray" />
+                        <TextBlock Text="{x:Bind sys:String.Format('{0:#;#; }', OriginalValue)}"
+                                   RelativePanel.Below="Then"
+                                   RelativePanel.AlignLeftWith="Sparkline" />
+                        <TextBlock Text="{x:Bind sys:String.Format('{0:#;#; }', CurrentValue)}"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   RelativePanel.Below="Then"
+                                   RelativePanel.AlignHorizontalCenterWith="Sparkline" />
+                        <TextBlock Text="{x:Bind sys:String.Format('{0:+0%;-0%;0%}', Performance)}"
+                                   RelativePanel.Below="Then"
+                                   RelativePanel.AlignRightWith="Sparkline" />
                     </RelativePanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

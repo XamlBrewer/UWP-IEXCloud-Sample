@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VSLee.IEXSharp.Model.Stock.Response;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample.Models
@@ -22,5 +20,11 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Models
         public double Minimum => (double)HistoricalPrices.Select(h => h.close).Min();
 
         public double Maximum => (double)HistoricalPrices.Select(h => h.close).Max();
+
+        public double OriginalValue => BuyPrice * Quantity;
+
+        public double CurrentValue => (double)HistoricalPrices.Last().close * Quantity;
+
+        public double Performance => (CurrentValue / OriginalValue) - 1;
     }
 }
