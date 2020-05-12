@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using XamlBrewer.Fluent;
 using XamlBrewer.UWP.IEXCloud.Sample.Models;
 using XamlBrewer.UWP.IEXCloud.Sample.Services;
 
@@ -12,6 +14,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
         public PortfolioPage()
         {
             this.InitializeComponent();
+
 
             Loaded += PortfolioPage_Loaded;
         }
@@ -61,7 +64,11 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
             }
 
             PortfolioGrid.ItemsSource = items;
+            await Task.Delay(1000); // Give the GridView some time to render the containers.
+
             ProgressRing.IsActive = false;
+
+            PortfolioGrid.RegisterImplicitAnimations();
         }
     }
 }

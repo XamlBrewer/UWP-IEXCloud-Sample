@@ -2,6 +2,7 @@
 using Windows.Foundation.Metadata;
 using Windows.UI.Composition;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Hosting;
 
 namespace XamlBrewer.Fluent
@@ -28,6 +29,33 @@ namespace XamlBrewer.Fluent
             {
                 var elementVisual = ElementCompositionPreview.GetElementVisual(item);
                 elementVisual.ImplicitAnimations = elementImplicitAnimation;
+            }
+        }
+
+        public static void RegisterImplicitAnimations(this ItemsControl itemsControl)
+        {
+            // Check if SDK > 14393
+            if (!ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3))
+            {
+                return;
+            }
+
+            var compositor = ElementCompositionPreview.GetElementVisual(itemsControl).Compositor;
+
+            // Create ImplicitAnimations Collection. 
+            var elementImplicitAnimation = compositor.CreateImplicitAnimationCollection();
+
+            // Define trigger and animation that should play when the trigger is triggered. 
+            elementImplicitAnimation["Offset"] = CreateOffsetAnimation(compositor);
+
+            foreach (var item in itemsControl.Items)
+            {
+                var container = itemsControl.ContainerFromItem(item);
+                if (container != null) // Item not rendered.
+                {
+                    var elementVisual = ElementCompositionPreview.GetElementVisual((SelectorItem)container);
+                    elementVisual.ImplicitAnimations = elementImplicitAnimation;
+                }
             }
         }
 
