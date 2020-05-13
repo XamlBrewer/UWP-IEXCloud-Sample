@@ -64,8 +64,11 @@ namespace XamlBrewer.UWP.IEXCloud.Sample
 
             var item = args.InvokedItemContainer as WinUI.NavigationViewItem;
 
-            ContentFrame.Navigate(Type.GetType(item.Tag.ToString()));
-            NavigationView.Header = item.Content;
+            if (item.Tag != null)
+            {
+                ContentFrame.Navigate(Type.GetType(item.Tag.ToString()), item.Content);
+                NavigationView.Header = item.Content;
+            }
         }
 
         private void SettingsTip_CloseButtonClick(WinUI.TeachingTip sender, object args)
