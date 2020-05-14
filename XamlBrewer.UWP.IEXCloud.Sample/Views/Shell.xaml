@@ -52,7 +52,8 @@
                         <winui:NavigationViewItem Content="MSFT"
                                                   Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.HistoryPage">
                             <winui:NavigationViewItem.Icon>
-                                <FontIcon Glyph="&#xF0E2;" />
+                                <BitmapIcon UriSource="/Assets/microsoft.png"
+                                            ShowAsMonochrome="False" />
                             </winui:NavigationViewItem.Icon>
                         </winui:NavigationViewItem>
                     </winui:NavigationViewItem.MenuItems>
@@ -75,7 +76,8 @@
                         <winui:NavigationViewItem Content="MSFT"
                                                   Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.NewsPage">
                             <winui:NavigationViewItem.Icon>
-                                <FontIcon Glyph="&#xF0E2;" />
+                                <BitmapIcon UriSource="/Assets/microsoft.png"
+                                            ShowAsMonochrome="False" />
                             </winui:NavigationViewItem.Icon>
                         </winui:NavigationViewItem>
                     </winui:NavigationViewItem.MenuItems>
