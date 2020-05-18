@@ -30,7 +30,8 @@
                               Header="My stocks"
                               IsBackButtonVisible="Collapsed"
                               Background="Transparent"
-                              ItemInvoked="NavigationView_ItemInvoked">
+                              ItemInvoked="NavigationView_ItemInvoked"
+                              SelectionChanged="NavigationView_SelectionChanged">
             <winui:NavigationView.MenuItems>
                 <winui:NavigationViewItem Content="Watchlist"
                                           Tag="XamlBrewer.UWP.IEXCloud.Sample.Views.WatchListPage">

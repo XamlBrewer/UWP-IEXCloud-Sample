@@ -12,7 +12,8 @@
         <!--<winui:ItemsRepeaterScrollHost>-->
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       VerticalScrollMode="Enabled"
-                      HorizontalScrollMode="Disabled">
+                      HorizontalScrollMode="Disabled"
+                      Margin="0 30 0 70">
             <winui:ItemsRepeater x:Name="NewsItems"
                                  Margin="0 0 20 20"
                                  HorizontalAlignment="Stretch"
@@ -51,6 +52,9 @@
                 </winui:ItemsRepeater.ItemTemplate>
             </winui:ItemsRepeater>
         </ScrollViewer>
+        <TextBlock VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Text="{x:Bind _symbol}" />
         <winui:ProgressRing x:Name="ProgressRing"
                             Width="64"
                             Height="64"

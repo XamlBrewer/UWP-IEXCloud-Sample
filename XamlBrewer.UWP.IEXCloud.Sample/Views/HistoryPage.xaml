@@ -37,101 +37,213 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="TabViewCloseButtonStyle"
+               TargetType="Button">
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="Padding"
+                    Value="0" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="FontFamily"
+                    Value="Segoe MDL2 Assets" />
+            <Setter Property="FontWeight"
+                    Value="Normal" />
+            <Setter Property="FontSize"
+                    Value="{ThemeResource ControlContentThemeFontSize}" />
+            <Setter Property="CornerRadius"
+                    Value="{ThemeResource ControlCornerRadius}" />
+            <Setter Property="UseSystemFocusVisuals"
+                    Value="{StaticResource UseSystemFocusVisuals}" />
+            <Setter Property="FocusVisualMargin"
+                    Value="-3" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          AutomationProperties.AccessibilityView="Raw"
+                                          Background="{TemplateBinding Background}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          CornerRadius="{TemplateBinding CornerRadius}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Padding="{TemplateBinding Padding}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource TabViewButtonBackgroundPointerOver}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource TabViewButtonForegroundPointerOver}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource TabViewButtonBackgroundPressed}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource TabViewButtonForegroundPressed}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource TabViewButtonBackgroundDisabled}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                           Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource TabViewButtonForegroundDisabled}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ContentPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid Background="Transparent">
-        <telerikChart:RadCartesianChart x:Name="Chart"
-                                        Margin="0 0 0 60">
-            <telerikChart:RadCartesianChart.HorizontalAxis>
-                <telerikChart:DateTimeCategoricalAxis MajorTickInterval="5" />
-            </telerikChart:RadCartesianChart.HorizontalAxis>
-            <telerikChart:RadCartesianChart.VerticalAxis>
-                <telerikChart:LinearAxis />
-            </telerikChart:RadCartesianChart.VerticalAxis>
-            <telerikChart:LineSeries x:Name="HistoricPrices"
-                                     LegendTitle="1 Month"
-                                     IsVisibleInLegend="True"
-                                     Stroke="SlateGray">
-                <telerikChart:LineSeries.CategoryBinding>
-                    <telerikChart:PropertyNameDataPointBinding PropertyName="date" />
-                </telerikChart:LineSeries.CategoryBinding>
-                <telerikChart:LineSeries.ValueBinding>
-                    <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
-                </telerikChart:LineSeries.ValueBinding>
-                <telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
-                    <DataTemplate />
-                </telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
-            </telerikChart:LineSeries>
-            <telerikChart:CandlestickSeries x:Name="CandleSticks">
-                <telerikChart:CandlestickSeries.DefaultVisualStyle>
-                    <Style TargetType="telerikChart:Candlestick">
-                        <Setter Property="StrokeThickness"
-                                Value="2" />
-                        <Setter Property="UpStroke"
-                                Value="OliveDrab" />
-                        <Setter Property="DownStroke"
-                                Value="IndianRed" />
-                        <Setter Property="UpFill"
-                                Value="Transparent" />
-                        <Setter Property="DownFill"
-                                Value="Transparent" />
-                    </Style>
-                </telerikChart:CandlestickSeries.DefaultVisualStyle>
-                <telerikChart:CandlestickSeries.CategoryBinding>
-                    <telerikChart:PropertyNameDataPointBinding PropertyName="date" />
-                </telerikChart:CandlestickSeries.CategoryBinding>
-                <telerikChart:CandlestickSeries.HighBinding>
-                    <telerikChart:PropertyNameDataPointBinding PropertyName="high" />
-                </telerikChart:CandlestickSeries.HighBinding>
-                <telerikChart:CandlestickSeries.LowBinding>
-                    <telerikChart:PropertyNameDataPointBinding PropertyName="low" />
-                </telerikChart:CandlestickSeries.LowBinding>
-                <telerikChart:CandlestickSeries.OpenBinding>
-                    <telerikChart:PropertyNameDataPointBinding PropertyName="open" />
-                </telerikChart:CandlestickSeries.OpenBinding>
-                <telerikChart:CandlestickSeries.CloseBinding>
-                    <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
-                </telerikChart:CandlestickSeries.CloseBinding>
-                <telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock x:Name="Data"
-                                       Text="{Binding DataPoint.DataItem.date}"
-                                       FontWeight="SemiBold"
-                                       Margin="10"
-                                       HorizontalAlignment="Center" />
-                            <TextBlock Margin="10 0"><Run Text="Open: " /><Run Text="{Binding DataPoint.DataItem.open}" /></TextBlock>
-                            <TextBlock Margin="10 5"><Run Text="Low: " /><Run Text="{Binding DataPoint.DataItem.low}" /></TextBlock>
-                            <TextBlock Margin="10 0"><Run Text="High: " /><Run Text="{Binding DataPoint.DataItem.high}" /></TextBlock>
-                            <TextBlock Margin="10 5 10 10"><Run Text="Close: " /><Run Text="{Binding DataPoint.DataItem.close}" /></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
-            </telerikChart:CandlestickSeries>
-            <telerikChart:RadCartesianChart.Behaviors>
-                <telerikChart:ChartTrackBallBehavior InfoMode="Multiple"
-                                                     SnapMode="None"
-                                                     ShowIntersectionPoints="False"
-                                                     ShowInfo="True">
-                    <telerikChart:ChartTrackBallBehavior.LineStyle>
-                        <Style TargetType="Polyline">
-                            <Setter Property="Stroke"
-                                    Value="{StaticResource SystemAccentColorBrush}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <winui:TabView Background="Transparent">
+            <winui:TabViewItem Header="AAPL" />
+            <winui:TabViewItem Header="MSFT" />
+        </winui:TabView>
+        <Grid Grid.Row="1"
+              Margin="0 0 0 100"
+              Padding="0 0 20 0"
+              BorderThickness=".5 0 1.5 .5"
+              Background="GhostWhite">
+            <Grid.BorderBrush>
+                <SolidColorBrush Color="LightSlateGray"
+                                 Opacity=".25" />
+            </Grid.BorderBrush>
+            <telerikChart:RadCartesianChart x:Name="Chart">
+                <telerikChart:RadCartesianChart.HorizontalAxis>
+                    <telerikChart:DateTimeCategoricalAxis MajorTickInterval="5" />
+                </telerikChart:RadCartesianChart.HorizontalAxis>
+                <telerikChart:RadCartesianChart.VerticalAxis>
+                    <telerikChart:LinearAxis />
+                </telerikChart:RadCartesianChart.VerticalAxis>
+                <telerikChart:LineSeries x:Name="HistoricPrices"
+                                         LegendTitle="1 Month"
+                                         IsVisibleInLegend="True"
+                                         Stroke="SlateGray">
+                    <telerikChart:LineSeries.CategoryBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="date" />
+                    </telerikChart:LineSeries.CategoryBinding>
+                    <telerikChart:LineSeries.ValueBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
+                    </telerikChart:LineSeries.ValueBinding>
+                    <telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
+                        <DataTemplate />
+                    </telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
+                </telerikChart:LineSeries>
+                <telerikChart:CandlestickSeries x:Name="CandleSticks">
+                    <telerikChart:CandlestickSeries.DefaultVisualStyle>
+                        <Style TargetType="telerikChart:Candlestick">
                             <Setter Property="StrokeThickness"
-                                    Value="1" />
+                                    Value="2" />
+                            <Setter Property="UpStroke"
+                                    Value="OliveDrab" />
+                            <Setter Property="DownStroke"
+                                    Value="IndianRed" />
+                            <Setter Property="UpFill"
+                                    Value="Transparent" />
+                            <Setter Property="DownFill"
+                                    Value="Transparent" />
                         </Style>
-                    </telerikChart:ChartTrackBallBehavior.LineStyle>
-                </telerikChart:ChartTrackBallBehavior>
-
-            </telerikChart:RadCartesianChart.Behaviors>
-        </telerikChart:RadCartesianChart>
-        <telerikPrimitives:RadLegendControl LegendProvider="{Binding ElementName=Chart}"
-                                            VerticalAlignment="Top"
-                                            HorizontalAlignment="Left"
-                                            Margin="20 0" />
+                    </telerikChart:CandlestickSeries.DefaultVisualStyle>
+                    <telerikChart:CandlestickSeries.CategoryBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="date" />
+                    </telerikChart:CandlestickSeries.CategoryBinding>
+                    <telerikChart:CandlestickSeries.HighBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="high" />
+                    </telerikChart:CandlestickSeries.HighBinding>
+                    <telerikChart:CandlestickSeries.LowBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="low" />
+                    </telerikChart:CandlestickSeries.LowBinding>
+                    <telerikChart:CandlestickSeries.OpenBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="open" />
+                    </telerikChart:CandlestickSeries.OpenBinding>
+                    <telerikChart:CandlestickSeries.CloseBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="close" />
+                    </telerikChart:CandlestickSeries.CloseBinding>
+                    <telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock x:Name="Data"
+                                           Text="{Binding DataPoint.DataItem.date}"
+                                           FontWeight="SemiBold"
+                                           Margin="10"
+                                           HorizontalAlignment="Center" />
+                                <TextBlock Margin="10 0"><Run Text="Open: " /><Run Text="{Binding DataPoint.DataItem.open}" /></TextBlock>
+                                <TextBlock Margin="10 5"><Run Text="Low: " /><Run Text="{Binding DataPoint.DataItem.low}" /></TextBlock>
+                                <TextBlock Margin="10 0"><Run Text="High: " /><Run Text="{Binding DataPoint.DataItem.high}" /></TextBlock>
+                                <TextBlock Margin="10 5 10 10"><Run Text="Close: " /><Run Text="{Binding DataPoint.DataItem.close}" /></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerikChart:ChartTrackBallBehavior.TrackInfoTemplate>
+                </telerikChart:CandlestickSeries>
+                <telerikChart:RadCartesianChart.Behaviors>
+                    <telerikChart:ChartTrackBallBehavior InfoMode="Multiple"
+                                                         SnapMode="None"
+                                                         ShowIntersectionPoints="False"
+                                                         ShowInfo="True">
+                        <telerikChart:ChartTrackBallBehavior.LineStyle>
+                            <Style TargetType="Polyline">
+                                <Setter Property="Stroke"
+                                        Value="{StaticResource SystemAccentColorBrush}" />
+                                <Setter Property="StrokeThickness"
+                                        Value="1" />
+                            </Style>
+                        </telerikChart:ChartTrackBallBehavior.LineStyle>
+                    </telerikChart:ChartTrackBallBehavior>
+                </telerikChart:RadCartesianChart.Behaviors>
+            </telerikChart:RadCartesianChart>
+            <telerikPrimitives:RadLegendControl LegendProvider="{Binding ElementName=Chart}"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"
+                                                Margin="20 0" />
+        </Grid>
         <winui:ProgressRing x:Name="ProgressRing"
                             Width="64"
                             Height="64"
+                            Grid.RowSpan="2"
                             Background="Transparent" />
     </Grid>
 </Page>

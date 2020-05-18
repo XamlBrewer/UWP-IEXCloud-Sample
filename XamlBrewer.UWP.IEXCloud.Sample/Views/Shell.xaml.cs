@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+using XamlBrewer.UWP.IEXCloud.Sample.Controls;
 using XamlBrewer.UWP.IEXCloud.Sample.Services;
 using XamlBrewer.UWP.IEXCloud.Sample.Views;
 using WinUI = Microsoft.UI.Xaml.Controls;
@@ -55,26 +46,31 @@ namespace XamlBrewer.UWP.IEXCloud.Sample
 
         private void NavigationView_ItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            if (args.IsSettingsInvoked)
-            {
-                ContentFrame.Navigate(typeof(SettingsPage));
-                NavigationView.Header = "Settings";
-                return;
-            }
-
-            var item = args.InvokedItemContainer as WinUI.NavigationViewItem;
-
-            if (item.Tag != null)
-            {
-                ContentFrame.Navigate(Type.GetType(item.Tag.ToString()), item.Content);
-                NavigationView.Header = item.Content;
-            }
+            // Similar code to SelectionChanged, but with a 'click to refresh' behavior.
         }
 
         private void SettingsTip_CloseButtonClick(WinUI.TeachingTip sender, object args)
         {
             ContentFrame.Navigate(typeof(SettingsPage));
             NavigationView.Header = "Settings";
+        }
+
+        private void NavigationView_SelectionChanged(WinUI.NavigationView sender, WinUI.NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+            {
+                ContentFrame.Navigate(typeof(SettingsPage));
+                NavigationView.Header = "Settings";
+                return;
+            }
+
+            var item = args.SelectedItemContainer as WinUI.NavigationViewItem;
+
+            if (item.Tag != null)
+            {
+                ContentFrame.Navigate(Type.GetType(item.Tag.ToString()), item.Content);
+                NavigationView.Header = sender.SelectedItemsPath().First().Content;
+            }
         }
     }
 }

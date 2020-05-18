@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using WinUI = Microsoft.UI.Xaml.Controls;
 using XamlBrewer.UWP.IEXCloud.Sample.Services;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample.Views
