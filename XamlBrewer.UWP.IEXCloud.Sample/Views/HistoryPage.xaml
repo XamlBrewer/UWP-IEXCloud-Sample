@@ -139,7 +139,8 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <winui:TabView Background="Transparent">
+        <winui:TabView x:Name="SymbolsTab"
+                       Background="Transparent">
             <winui:TabViewItem Header="AAPL" />
             <winui:TabViewItem Header="MSFT" />
         </winui:TabView>

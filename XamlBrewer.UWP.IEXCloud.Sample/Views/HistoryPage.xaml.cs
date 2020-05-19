@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using XamlBrewer.UWP.IEXCloud.Sample.Services;
+using System.Linq;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample.Views
 {
@@ -22,6 +23,18 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
             base.OnNavigatedTo(e);
 
             _symbol = e.Parameter.ToString();
+            try
+            {
+                // Synchronize menu to tab.
+                SymbolsTab.SelectedItem = SymbolsTab
+                                            .TabItems
+                                            .Where(ti => (ti as WinUI.TabViewItem).Header.ToString() == _symbol)
+                                            .FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                // Synchronization failed.
+            }
         }
 
         private async void HistoryPage_Loaded(object sender, RoutedEventArgs e)
