@@ -15,7 +15,6 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
         public HistoryPage()
         {
             this.InitializeComponent();
-            Loaded += HistoryPage_Loaded;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -23,39 +22,76 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
             base.OnNavigatedTo(e);
 
             _symbol = e.Parameter.ToString();
+
             try
             {
                 // Synchronize menu to tab.
                 SymbolsTab.SelectedItem = SymbolsTab
                                             .TabItems
                                             .Where(ti => (ti as WinUI.TabViewItem).Header.ToString() == _symbol)
-                                            .FirstOrDefault();
+                                            .First();
             }
             catch (Exception)
             {
                 // Synchronization failed.
+                SymbolsTab.SelectedIndex = 0;
             }
         }
 
-        private async void HistoryPage_Loaded(object sender, RoutedEventArgs e)
+        private async void SymbolsTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            _symbol = (e.AddedItems.First() as WinUI.TabViewItem).Header.ToString();
+
+            // Here's where we should try to sync from tab to menu without starting a loop.
+            // ...
+
             ProgressRing.IsActive = true;
 
             using (var iexCloudClient = IEXCloudService.GetClient())
             {
-                var response = await iexCloudClient.Stock.HistoricalPriceAsync(_symbol);
-                if (response.ErrorMessage != null)
+                try
                 {
-                    Console.WriteLine(response.ErrorMessage);
+                    var response = await iexCloudClient.Stock.HistoricalPriceAsync(_symbol);
+                    if (response.ErrorMessage != null)
+                    {
+                        HistoricPrices.ItemsSource = null;
+                        CandleSticks.ItemsSource = null;
+                    }
+                    else
+                    {
+                        HistoricPrices.ItemsSource = response.Data;
+                        CandleSticks.ItemsSource = response.Data;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    HistoricPrices.ItemsSource = response.Data;
-                    CandleSticks.ItemsSource = response.Data;
+                    HistoricPrices.ItemsSource = null;
+                    CandleSticks.ItemsSource = null;
                 }
             }
 
             ProgressRing.IsActive = false;
+        }
+
+        private async void SymbolsTab_AddTabButtonClick(WinUI.TabView sender, object args)
+        {
+            var textBox = new TextBox { AcceptsReturn = false, Text = "GOOGL" };
+            var dialog = new ContentDialog
+            {
+                Content = textBox,
+                Title = "Add a new stock symbol",
+                IsSecondaryButtonEnabled = true,
+                PrimaryButtonText = "Let's see",
+                SecondaryButtonText = "No thanks"
+            };
+
+            if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+            {
+                var newTab = new WinUI.TabViewItem();
+                newTab.Header = textBox.Text;
+                sender.TabItems.Add(newTab);
+                sender.SelectedIndex = sender.TabItems.Count - 1;
+            }
         }
     }
 }

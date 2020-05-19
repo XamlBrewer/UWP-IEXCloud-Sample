@@ -140,6 +140,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <winui:TabView x:Name="SymbolsTab"
+                       SelectionChanged="SymbolsTab_SelectionChanged"
+                       AddTabButtonClick="SymbolsTab_AddTabButtonClick" 
                        Background="Transparent">
             <winui:TabViewItem Header="AAPL" />
             <winui:TabViewItem Header="MSFT" />

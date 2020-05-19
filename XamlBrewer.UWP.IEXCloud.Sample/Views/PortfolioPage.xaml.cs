@@ -15,7 +15,6 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
         {
             this.InitializeComponent();
 
-
             Loaded += PortfolioPage_Loaded;
         }
 
