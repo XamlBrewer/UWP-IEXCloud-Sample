@@ -26,16 +26,30 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                 new PortfolioItem
                     {
                         Symbol = "AAPL",
+                        BuyDate = new DateTime(2020, 10, 1),
+                        Quantity = 40,
+                        BuyPrice = 220
+                    },
+                new PortfolioItem
+                    {
+                        Symbol = "GOOGL",
                         BuyDate = new DateTime(2020, 1, 1),
-                        Quantity = 100,
-                        BuyPrice = 120
+                        Quantity = 1,
+                        BuyPrice = 1340
                     },
                 new PortfolioItem
                     {
                         Symbol = "MSFT",
-                        BuyDate = new DateTime(2020, 1, 1),
+                        BuyDate = new DateTime(2016, 1, 1),
                         Quantity = 100,
-                        BuyPrice = 120
+                        BuyPrice = 50
+                    },
+                new PortfolioItem
+                    {
+                        Symbol = "SBUX",
+                        BuyDate = new DateTime(2020, 3, 1),
+                        Quantity = 45,
+                        BuyPrice = 90
                     }
                 };
 

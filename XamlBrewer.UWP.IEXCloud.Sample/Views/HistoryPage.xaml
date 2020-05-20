@@ -8,7 +8,6 @@
       xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
       xmlns:telerikChartPrimitives="using:Telerik.UI.Xaml.Controls.Chart.Primitives"
       xmlns:telerikPrimitives="using:Telerik.UI.Xaml.Controls.Primitives"
-      xmlns:response="using:VSLee.IEXSharp.Model.Stock.Response"
       mc:Ignorable="d"
       Background="Transparent">
     <Page.Resources>
@@ -141,7 +140,7 @@
         </Grid.RowDefinitions>
         <winui:TabView x:Name="SymbolsTab"
                        SelectionChanged="SymbolsTab_SelectionChanged"
-                       AddTabButtonClick="SymbolsTab_AddTabButtonClick" 
+                       AddTabButtonClick="SymbolsTab_AddTabButtonClick"
                        Background="Transparent">
             <winui:TabViewItem Header="AAPL" />
             <winui:TabViewItem Header="MSFT" />

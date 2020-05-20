@@ -40,12 +40,31 @@
         </Style>
     </Page.Resources>
     <Grid Background="Transparent">
+        <Grid.Resources>
+            <SolidColorBrush x:Key="NavigationViewTopPaneBackground"
+                             Color="Transparent" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <winui:NavigationView PaneDisplayMode="Top"
+                              IsSettingsVisible="False"
+                              IsBackButtonVisible="Collapsed">
+            <winui:NavigationView.MenuItems>
+                <winui:NavigationViewItemHeader Content="  Chart period: " />
+                <winui:NavigationViewItem Content="1 Day" />
+                <winui:NavigationViewItem Content="3 Months" />
+                <winui:NavigationViewItem Content="1 Year" />
+            </winui:NavigationView.MenuItems>
+        </winui:NavigationView>
         <GridView x:Name="PortfolioGrid"
-                  x:DefaultBindMode="OneWay">
+                  x:DefaultBindMode="OneWay"
+                  Grid.Row="1">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:PortfolioItem">
                     <RelativePanel x:Name="PortfolioItemPanel"
-                                   Height="300"
+                                   Height="260"
                                    Width="300"
                                    Background="Transparent"
                                    Padding="20">
@@ -54,7 +73,7 @@
                                    FontWeight="SemiBold" />
                         <TextBlock x:Name="History"
                                    RelativePanel.Below="Symbol">
-                            <Run Text="Bought " /><Run Text="{x:Bind Quantity}" /><Run Text=" at " /><Run Text="{x:Bind BuyPrice}" /><Run Text=" on " /><Run Text="{x:Bind sys:String.Format('{0:d}', BuyDate)}" /><Run>.</Run>
+                            <Run Text="Bought " /><Run Text="{x:Bind Quantity}" /><Run Text=" at " /><Run Text="{x:Bind sys:String.Format('{0:C}', BuyPrice)}" /><Run Text=" each, on " /><Run Text="{x:Bind sys:String.Format('{0:d}', BuyDate)}" /><Run>.</Run>
                         </TextBlock>
                         <telerikChart:RadCartesianChart x:Name="Sparkline"
                                                         DataContext="{x:Bind HistoricalPrices}"
@@ -118,14 +137,14 @@
                                    RelativePanel.Below="Sparkline"
                                    RelativePanel.AlignHorizontalCenterWith="Sparkline"
                                    Foreground="SlateGray" />
-                        <TextBlock Text="performance"
+                        <TextBlock Text="score"
                                    RelativePanel.Below="Sparkline"
                                    RelativePanel.AlignRightWith="Sparkline"
                                    Foreground="SlateGray" />
-                        <TextBlock Text="{x:Bind sys:String.Format('{0:#;#; }', OriginalValue)}"
+                        <TextBlock Text="{x:Bind sys:String.Format('{0:C}', OriginalValue)}"
                                    RelativePanel.Below="Then"
                                    RelativePanel.AlignLeftWith="Sparkline" />
-                        <TextBlock Text="{x:Bind sys:String.Format('{0:#;#; }', CurrentValue)}"
+                        <TextBlock Text="{x:Bind sys:String.Format('{0:C}', CurrentValue)}"
                                    VerticalAlignment="Center"
                                    TextAlignment="Center"
                                    RelativePanel.Below="Then"
@@ -141,6 +160,7 @@
         <winui:ProgressRing x:Name="ProgressRing"
                             Width="64"
                             Height="64"
-                            Background="Transparent" />
+                            Background="Transparent"
+                            Grid.RowSpan="2" />
     </Grid>
 </Page>
