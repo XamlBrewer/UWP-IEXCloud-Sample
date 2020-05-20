@@ -7,21 +7,13 @@ using Windows.UI.Xaml.Controls;
 using XamlBrewer.Fluent;
 using XamlBrewer.UWP.IEXCloud.Sample.Models;
 using XamlBrewer.UWP.IEXCloud.Sample.Services;
+using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample.Views
 {
     public sealed partial class PortfolioPage : Page
     {
-        public PortfolioPage()
-        {
-            this.InitializeComponent();
-
-            Loaded += PortfolioPage_Loaded;
-        }
-
-        private async void PortfolioPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            var items = new List<PortfolioItem>
+        private List<PortfolioItem> _portfolioItems = new List<PortfolioItem>
                 {
                 new PortfolioItem
                     {
@@ -53,7 +45,23 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                     }
                 };
 
+        public PortfolioPage()
+        {
+            this.InitializeComponent();
+
+            Loaded += PortfolioPage_Loaded;
+        }
+
+        private async void PortfolioPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Update(_portfolioItems, ChartRange.ThreeMonths);
+        }
+
+        private async Task Update(List<PortfolioItem> items, ChartRange range)
+        {
             ProgressRing.IsActive = true;
+
+            PortfolioGrid.ItemsSource = null;
 
             using (var iexCloudClient = IEXCloudService.GetClient())
             {
@@ -65,7 +73,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                     queryStringBuilder.Add("chartCloseOnly", "true");
                     queryStringBuilder.Add("chartSimplify", "true");
 
-                    var response = await iexCloudClient.StockPrices.HistoricalPriceAsync(item.Symbol, ChartRange.ThreeMonths, queryStringBuilder);
+                    var response = await iexCloudClient.StockPrices.HistoricalPriceAsync(item.Symbol, range, queryStringBuilder);
                     if (response.ErrorMessage != null)
                     {
                         Console.WriteLine(response.ErrorMessage);
@@ -79,10 +87,17 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
 
             PortfolioGrid.ItemsSource = items;
             await Task.Delay(1000); // Give the GridView some time to render the containers.
+            PortfolioGrid.RegisterImplicitAnimations();
 
             ProgressRing.IsActive = false;
+        }
 
-            PortfolioGrid.RegisterImplicitAnimations();
+        private async void TopNavigationView_SelectionChanged(WinUI.NavigationView sender, WinUI.NavigationViewSelectionChangedEventArgs args)
+        {
+            // Random remark: there's no NavigationView.SelectIndex.
+
+            var range = (ChartRange)Enum.Parse(typeof(ChartRange), (sender.SelectedItem as WinUI.NavigationViewItem).Tag.ToString());
+            await Update(_portfolioItems, range);
         }
     }
 }

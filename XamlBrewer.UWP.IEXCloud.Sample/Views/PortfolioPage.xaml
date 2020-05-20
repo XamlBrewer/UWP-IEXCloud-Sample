@@ -48,14 +48,20 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <winui:NavigationView PaneDisplayMode="Top"
+        <winui:NavigationView x:Name="TopNavigationView"
+                              PaneDisplayMode="Top"
                               IsSettingsVisible="False"
-                              IsBackButtonVisible="Collapsed">
+                              IsBackButtonVisible="Collapsed"
+                              SelectionChanged="TopNavigationView_SelectionChanged">
             <winui:NavigationView.MenuItems>
                 <winui:NavigationViewItemHeader Content="  Chart period: " />
-                <winui:NavigationViewItem Content="1 Day" />
-                <winui:NavigationViewItem Content="3 Months" />
-                <winui:NavigationViewItem Content="1 Year" />
+                <winui:NavigationViewItem Content="1 Month"
+                                          Tag="OneMonth" />
+                <winui:NavigationViewItem Content="3 Months"
+                                          Tag="ThreeMonths"
+                                          IsSelected="True" />
+                <winui:NavigationViewItem Content="1 Year"
+                                          Tag="OneYear" />
             </winui:NavigationView.MenuItems>
         </winui:NavigationView>
         <GridView x:Name="PortfolioGrid"
