@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IEXSharp.Model.StockPrices.Request;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
@@ -46,11 +47,11 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                 {
                     // Needs to be inside the loop. 
                     // The IEXSharp ExecutorREST helper changes the QueryStringBuilder and blocks reuse.
-                    var queryStringBuilder = new VSLee.IEXSharp.Helper.QueryStringBuilder();
+                    var queryStringBuilder = new IEXSharp.Helper.QueryStringBuilder();
                     queryStringBuilder.Add("chartCloseOnly", "true");
                     queryStringBuilder.Add("chartSimplify", "true");
 
-                    var response = await iexCloudClient.Stock.HistoricalPriceAsync(item.Symbol, VSLee.IEXSharp.Model.Stock.Request.ChartRange._3m, queryStringBuilder);
+                    var response = await iexCloudClient.StockPrices.HistoricalPriceAsync(item.Symbol, ChartRange.ThreeMonths, queryStringBuilder);
                     if (response.ErrorMessage != null)
                     {
                         Console.WriteLine(response.ErrorMessage);

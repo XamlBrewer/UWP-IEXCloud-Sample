@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using VSLee.IEXSharp.Model.Shared.Response;
+using IEXSharp.Model.Shared.Response;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using XamlBrewer.UWP.IEXCloud.Sample.Services;
@@ -30,7 +30,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                 {
                     foreach (var item in _stocks)
                     {
-                        var response = await iexCloudClient.Stock.QuoteAsync(item);
+                        var response = await iexCloudClient.StockPrices.QuoteAsync(item);
                         if (response.ErrorMessage == null)
                         {
                             result.Add(response.Data);

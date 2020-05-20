@@ -29,7 +29,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
 
             using (var iexCloudClient = IEXCloudService.GetClient())
             {
-                var response = await iexCloudClient.Stock.NewsAsync(_symbol);
+                var response = await iexCloudClient.News.NewsAsync(_symbol);
                 if (response.ErrorMessage != null)
                 {
                     Console.WriteLine(response.ErrorMessage);

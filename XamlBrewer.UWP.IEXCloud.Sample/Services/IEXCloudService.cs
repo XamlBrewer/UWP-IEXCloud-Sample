@@ -1,4 +1,4 @@
-﻿using VSLee.IEXSharp;
+﻿using IEXSharp;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample.Services
 {

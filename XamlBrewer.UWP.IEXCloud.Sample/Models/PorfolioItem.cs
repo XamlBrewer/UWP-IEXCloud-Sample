@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VSLee.IEXSharp.Model.Stock.Response;
+using IEXSharp.Model.StockPrices.Response;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample.Models
 {

@@ -51,7 +51,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
             {
                 try
                 {
-                    var response = await iexCloudClient.Stock.HistoricalPriceAsync(_symbol);
+                    var response = await iexCloudClient.StockPrices.HistoricalPriceAsync(_symbol);
                     if (response.ErrorMessage != null)
                     {
                         HistoricPrices.ItemsSource = null;

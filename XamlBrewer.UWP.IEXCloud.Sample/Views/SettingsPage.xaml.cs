@@ -36,7 +36,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
             {
                 try
                 {
-                    var response = await iexCloudClient.Stock.QuoteAsync("MSFT");
+                    var response = await iexCloudClient.StockPrices.QuoteAsync("MSFT");
                     if (response.ErrorMessage == null)
                     {
                         TestTokensTest.Text = "Connection and tokens are OK.";
@@ -64,7 +64,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
             {
                 try
                 {
-                    var response = await iexCloudClient.Stock.QuoteAsync("MSFT");
+                    var response = await iexCloudClient.StockPrices.QuoteAsync("MSFT");
                     if (response.ErrorMessage == null)
                     {
                         TestSandboxTokensTest.Text = "Connection and tokens are OK.";
