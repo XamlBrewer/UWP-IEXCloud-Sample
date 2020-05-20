@@ -15,6 +15,6 @@ Demonstrates
 You need to get a (free) [IEXCloud](https://iexcloud.io/s/6dfaa988) account to get the data.
 
 Screenshots:
-![Screenshot](Assets/History.png?raw=true)
+![Screenshot](Assets/HistoryPage.png?raw=true)
 
 ![Screenshot](Assets/PortfolioPage.png?raw=true)
