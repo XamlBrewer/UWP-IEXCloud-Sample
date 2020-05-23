@@ -40,6 +40,11 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
 
         private async void SymbolsTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!e.AddedItems.Any())
+            {
+                return;
+            }
+
             _symbol = (e.AddedItems.First() as WinUI.TabViewItem).Header.ToString();
 
             // Here's where we should try to sync from tab to menu without starting a loop.
@@ -92,6 +97,11 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
                 sender.TabItems.Add(newTab);
                 sender.SelectedIndex = sender.TabItems.Count - 1;
             }
+        }
+
+        private void SymbolsTab_TabCloseRequested(WinUI.TabView sender, WinUI.TabViewTabCloseRequestedEventArgs args)
+        {
+            sender.TabItems.Remove(args.Item);
         }
     }
 }
