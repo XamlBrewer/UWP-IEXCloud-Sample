@@ -46,12 +46,29 @@
         <winui:TabView x:Name="SymbolsTab"
                        SelectionChanged="SymbolsTab_SelectionChanged"
                        AddTabButtonClick="SymbolsTab_AddTabButtonClick"
-                       TabCloseRequested="SymbolsTab_TabCloseRequested" 
+                       TabCloseRequested="SymbolsTab_TabCloseRequested"
                        Background="Transparent">
             <winui:TabViewItem Header="AAPL"
                                IsClosable="False" />
             <winui:TabViewItem Header="MSFT"
                                IsClosable="False" />
+            <winui:TabView.TabStripFooter>
+                <Grid>
+                    <Button HorizontalAlignment="Right"
+                            Padding="0"
+                            Margin="2"
+                            ToolTipService.ToolTip="Save Symbols to Settings">
+                        <Button.Background>
+                            <SolidColorBrush Color="{StaticResource SystemAccentColor}"
+                                             Opacity=".75" />
+                        </Button.Background>
+                        <SymbolIcon Symbol="Save"
+                                    Foreground="WhiteSmoke"
+                                    Height="32"
+                                    Width="32" />
+                    </Button>
+                </Grid>
+            </winui:TabView.TabStripFooter>
         </winui:TabView>
         <Grid Grid.Row="1"
               Margin="0 0 0 100"
