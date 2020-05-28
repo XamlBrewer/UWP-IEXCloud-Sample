@@ -4,17 +4,22 @@ An attempt to build a representative and useful WinUI (currently v2.4.2) referen
 
 Demonstrates
 * TeachingTip control
-* NavigationView
-  * Left
-  * Top
-  * Hierarchical
-* TabView
+* NavigationView control
+  * Left menu
+  * Top menu
+  * Hierarchical menu
+* TabView control
+  * including 'add' functionality
 * Fluent elements like animations and shadow
 * 3rd party libraries like Telerik UI and IEXSharp
 
-You need to get a (free) [IEXCloud](https://iexcloud.io/s/6dfaa988) account to get the data.
+The app displays live stock data. You need to get a (free) [IEXCloud](https://iexcloud.io/s/6dfaa988) account to get access to that data.
 
 Screenshots:
 ![Screenshot](Assets/HistoryPage.png?raw=true)
 
+![Screenshot](Assets/HistoryPageAdd.png?raw=true)
+
 ![Screenshot](Assets/PortfolioPage.png?raw=true)
+
+![Screenshot](Assets/NewsPage.png?raw=true)
