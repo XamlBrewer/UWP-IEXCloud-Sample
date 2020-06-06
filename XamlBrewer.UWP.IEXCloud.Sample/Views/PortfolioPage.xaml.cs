@@ -1,4 +1,4 @@
-﻿using IEXSharp.Model.StockPrices.Request;
+﻿using IEXSharp.Model.CoreData.StockPrices.Request;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
