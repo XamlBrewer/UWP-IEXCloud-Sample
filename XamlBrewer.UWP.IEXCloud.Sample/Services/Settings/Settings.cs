@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Storage;
+﻿using Windows.Storage;
 using XamlBrewer.Mvvm;
 
 namespace XamlBrewer.UWP.IEXCloud.Sample.Services
@@ -14,7 +9,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Services
 
         public Settings()
             : base(ApplicationData.Current.LocalSettings)
-        {}
+        { }
 
         public string PublishableKey
         {

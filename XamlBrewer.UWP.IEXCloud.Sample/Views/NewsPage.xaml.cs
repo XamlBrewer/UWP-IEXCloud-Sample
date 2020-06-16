@@ -9,7 +9,7 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
     public sealed partial class NewsPage : Page
     {
         private string _symbol;
-        
+
         public NewsPage()
         {
             this.InitializeComponent();

@@ -16,15 +16,14 @@ namespace XamlBrewer.UWP.IEXCloud.Sample.Views
             SandboxContentGrid.Translation += new Vector3(0, 0, 6);
             SettingsGrid.RegisterImplicitAnimations();
 
-            Loaded += Page1_Loaded;
+            Loaded += SettingsPage_Loaded;
         }
 
         private Settings Settings => new Settings();
 
-        private void Page1_Loaded(object sender, RoutedEventArgs e)
+        private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
         {
             SharedShadow.Receivers.Add(ShadowCatcher);
-
         }
 
         private async void TestTokensButton_Click(object sender, RoutedEventArgs e)

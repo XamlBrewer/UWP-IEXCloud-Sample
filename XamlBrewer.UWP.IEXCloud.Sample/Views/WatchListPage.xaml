@@ -38,9 +38,9 @@
                        Grid.Column="6" />
         </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto"
-                            VerticalScrollMode="Enabled"
-                            HorizontalScrollMode="Disabled"
-                            Grid.Row="1">
+                      VerticalScrollMode="Enabled"
+                      HorizontalScrollMode="Disabled"
+                      Grid.Row="1">
             <winui:ItemsRepeater x:Name="Quotes"
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Stretch">
