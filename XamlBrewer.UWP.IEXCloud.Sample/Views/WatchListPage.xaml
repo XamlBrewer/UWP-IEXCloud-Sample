@@ -60,8 +60,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <FontIcon Glyph="{x:Bind svc:FormattingService.NumberAsArrow(changePercent)}"
-                                      Foreground="{x:Bind svc:FormattingService.NumberAsBrush(changePercent)}"
+                            <FontIcon Glyph="{x:Bind svc:FormattingService.NumberAsArrow(changePercent.Value)}"
+                                      Foreground="{x:Bind svc:FormattingService.NumberAsBrush(changePercent.Value)}"
                                       FontSize="12"
                                       Opacity=".75" />
                             <TextBlock Text="{x:Bind companyName}"
